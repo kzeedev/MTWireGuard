@@ -17,6 +17,10 @@ internal class Program
         builder.Services.AddExceptionHandler<ExceptionHandler>();
         builder.Services.AddProblemDetails();
         builder.Services.AddApplicationServices();
+        builder.Services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(Environment.GetEnvironmentVariable("SESSION_TIMEOUT") is string timeout && int.TryParse(timeout, out int minutes) ? minutes : 30);
+        });
 
         builder.Host.UseSerilog(CoreUtil.LoggerConfiguration());
 
@@ -50,10 +54,10 @@ internal class Program
         //app.UseAntiForgery();
         app.UseRouting();
 
+        app.UseSession();
+
         app.UseAuthentication();
         app.UseAuthorization();
-
-        app.UseSession();
 
         app.MapRazorPages();
 
