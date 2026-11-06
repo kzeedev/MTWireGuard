@@ -33,6 +33,7 @@
     <PackageReference Include="Serilog.Sinks.SQLite" Version="6.0.0" />
     <PackageReference Include="Serilog.UI" Version="3.1.0" />
     <PackageReference Include="Serilog.UI.SqliteProvider" Version="1.0.0" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.14" />
   </ItemGroup>
 
   <ItemGroup>

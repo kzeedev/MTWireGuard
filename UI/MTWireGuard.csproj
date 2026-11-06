@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.Build" Version="17.14.28" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,7 +21,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="NuGet.Protocol" Version="6.11.1" />
+    <PackageReference Include="NuGet.Protocol" Version="6.14.3" />
     <PackageReference Include="Razor.Templating.Core" Version="2.1.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
@@ -28,6 +29,7 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
     <PackageReference Include="Serilog.Sinks.SQLite" Version="6.0.0" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.14" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
   </ItemGroup>
 
