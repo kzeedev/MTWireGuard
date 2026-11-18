@@ -23,15 +23,24 @@ namespace MTWireGuard.Application.Utils
 
         /// <summary>
         /// Return full path of requested file in log files directory
+        /// Creates directory if not exists
         /// </summary>
         /// <param name="filename">requested file name</param>
         /// <returns></returns>
-        public static string GetLogPath(string filename) => Path.Join(Constants.DataPath(), "logs", filename);
+        public static string GetLogPath(string filename)
+        {
+            var logsDir = Path.Join(Constants.DataPath(), "logs");
+            Directory.CreateDirectory(logsDir);
+            return Path.Join(logsDir, filename);
+        }
 
         public static string GetIDFile() => Constants.DataPath("identifier.id");
         public static string GetIDContent()
         {
             var idFile = GetIDFile();
+            var idFileDir = Path.GetDirectoryName(idFile);
+
+            if (!string.IsNullOrEmpty(idFileDir)) Directory.CreateDirectory(idFileDir);
 
             if (!File.Exists(idFile))
             {
@@ -43,6 +52,15 @@ namespace MTWireGuard.Application.Utils
             }
             return File.ReadAllText(idFile);
         }
+
+        /// <summary>
+        /// Returns true if running inside container
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsRunningInContainer() =>
+            string.Equals(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"), "true", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINERS"), "true", StringComparison.OrdinalIgnoreCase) ||
+            File.Exists("/.dockerenv") || File.Exists("/run/.containerenv");
 
         /// <summary>
         /// Serilog configuration
